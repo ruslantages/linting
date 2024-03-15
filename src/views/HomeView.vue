@@ -7,12 +7,28 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import HelloWorld from "@/components/HelloWorld.vue";
 
 @Component({
   components: {
     HelloWorld,
   },
 })
-export default class HomeView extends Vue {}
+export default class HomeView extends Vue {
+  name: { value: string; categoryIdList: number[]; categoryId: number } = {
+    categoryId: 123,
+    categoryIdList: [123],
+    value: "",
+  };
+
+  get nameWithHello() {
+    return this.name;
+  }
+
+  async beforeMount() {
+    this.name.categoryId = Math.random() * 100;
+
+    if (this.name.categoryId === 20) this.name.categoryId = 1;
+  }
+}
 </script>
