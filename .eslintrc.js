@@ -5,6 +5,10 @@ module.exports = {
     node: true,
   },
   parser: "vue-eslint-parser", // Обязательный параметр что бы typescript parser работал и не ругался на vue шаблоны
+  plugins: [
+    "@typescript-eslint",
+    "custom-plugin"
+  ],
   extends: [
     "plugin:vue/essential",
     "eslint:recommended",
@@ -26,6 +30,7 @@ module.exports = {
      * В WebStorm ( Languages & Frameworks › JavaScript › Prettier › Убрать галочку "Fix on save" )
      *
      * */
+    "custom-plugin/adapter-function": "error",
 
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
@@ -234,18 +239,18 @@ module.exports = {
         format: ["PascalCase"],
         prefix: ["is", "are", "may", "can"],
       },
-      {
-        selector: ["function"],
-        format: ["camelCase"],
-        filter: {
-          regex: "[.*adapter(.*)?, gi]", // функции которые имеют в названии adapter должны начинаться со слова adapter
-          match: true,
-        },
-        custom: {
-          regex: "^adapter([A-Z][a-z0-9]+)+",
-          match: true,
-        },
-      },
+      // {
+      //   selector: ["function"],
+      //   format: ["camelCase"],
+      //   filter: {
+      //     regex: "[.*adapter(.*)?, gi]", // функции которые имеют в названии adapter должны начинаться со слова adapter
+      //     match: true,
+      //   },
+      //   custom: {
+      //     regex: "^adapter([A-Z][a-z0-9]+)+",
+      //     match: true,
+      //   },
+      // },
     ],
     "@typescript-eslint/no-unused-vars": [
       "warn",
@@ -498,6 +503,10 @@ module.exports = {
       },
     },
   ],
+  ignorePatterns: [
+    "node_modules",
+    ".eslintrc.js"
+  ]
 };
 
 // ✅булевые переменные должны нчнаться с is

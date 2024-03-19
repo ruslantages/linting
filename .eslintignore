@@ -5,3 +5,6 @@ coverage
 .eslintrc.js
 
 src/grpc
+
+**/*.rule.[t,j]s
+**/eslint-custom-plugin
