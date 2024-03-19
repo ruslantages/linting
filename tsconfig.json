@@ -29,6 +29,7 @@
     ]
   },
   "include": [
+    ".eslintrc.js",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
